@@ -7,7 +7,7 @@ import java.util.List;
 public class Vertex <T> {
     private final int id;
     private T data;
-    public List<Vertex<T>> vertexes;
+    private List<Integer> vertexes;
 
     public Vertex(T data, int id) {
         this.id = id;
@@ -15,12 +15,14 @@ public class Vertex <T> {
         this.vertexes = new ArrayList<>();
     }
 
-    public void addRelation(Vertex<T> vertex) {
-        vertexes.add(vertex);
+    public List<Integer> getVertexes() {
+        return vertexes;
     }
 
-    public void removeRelation(Vertex<T> vertex) {
-        vertexes.remove(vertex);
+    public void addRelation(int vertexId) {
+        if (!vertexes.contains(vertexId)) {
+            vertexes.add(vertexId);
+        }
     }
 
     @Override
@@ -40,6 +42,11 @@ public class Vertex <T> {
 
     @Override
     public String toString() {
-        return "(id: " + id + "|[" + data.toString() + "])";
+        StringBuilder sb = new StringBuilder();
+        sb.append("(id: " + id + "|[" + data.toString() + "])");
+        for (int vertexId: vertexes) {
+            sb.append("[" + vertexId + "]");
+        }
+        return sb.toString();
     }
 }
