@@ -2,6 +2,7 @@ package ru.intodayer.graph.graphalgo;
 
 import ru.intodayer.graph.Vertex;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -25,14 +26,19 @@ public class GraphSearch<T> implements GraphAlgoInterface<T> {
 
     @Override
     public Vertex<T> dfs(Vertex<T> vertex, T targetData) {
-        if (vertex.getData().equals(targetData)) {
-            return vertex;
-        }
+        LinkedList<Vertex<T>> stack = new LinkedList<>();
+        stack.add(vertex);
 
-        visited.add(vertex);
-        for (Vertex<T> v: vertex.getVertexes()) {
-            if (!visited.contains(v)) {
-                dfs(v, targetData);
+        while (stack.size() != 0) {
+            Vertex<T> top = stack.removeLast();
+
+            if (top.getData().equals(targetData)) {
+                return top;
+            }
+
+            if (!visited.contains(top)) {
+                visited.add(top);
+                stack.addAll(top.getVertexes());
             }
         }
         return null;
