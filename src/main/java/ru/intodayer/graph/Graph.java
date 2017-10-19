@@ -2,6 +2,7 @@ package ru.intodayer.graph;
 
 
 import ru.intodayer.graph.graphalgo.GraphSearch;
+import ru.intodayer.graph.vertex.Vertex;
 
 public class Graph<T> implements GraphInterface<T> {
     private int currentVertexId;

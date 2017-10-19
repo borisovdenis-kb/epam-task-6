@@ -1,4 +1,4 @@
-package ru.intodayer.graph;
+package ru.intodayer.graph.vertex;
 
 import java.util.ArrayList;
 import java.util.List;
