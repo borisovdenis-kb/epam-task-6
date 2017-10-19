@@ -5,23 +5,34 @@ import java.util.List;
 
 
 public class Vertex <T> {
-    private final int id;
+    private int id;
     private T data;
-    private List<Integer> vertexes;
+    private List<Vertex<T>> vertexes;
 
-    public Vertex(T data, int id) {
-        this.id = id;
+    public Vertex() {
+    }
+
+    public Vertex(T data, int vertexId) {
+        this.id = vertexId;
         this.data = data;
         this.vertexes = new ArrayList<>();
     }
 
-    public List<Integer> getVertexes() {
+    public int getId() {
+        return id;
+    }
+
+    public T getData() {
+        return data;
+    }
+
+    public List<Vertex<T>> getVertexes() {
         return vertexes;
     }
 
-    public void addRelation(int vertexId) {
-        if (!vertexes.contains(vertexId)) {
-            vertexes.add(vertexId);
+    public void addRelation(Vertex<T> vertex) {
+        if (!vertexes.contains(vertex)) {
+            vertexes.add(vertex);
         }
     }
 
@@ -42,11 +53,7 @@ public class Vertex <T> {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("(id: " + id + "|[" + data.toString() + "])");
-        for (int vertexId: vertexes) {
-            sb.append("[" + vertexId + "]");
-        }
-        return sb.toString();
+        String res = "(id:%s|[%s])";
+        return String.format(res, id, data);
     }
 }
