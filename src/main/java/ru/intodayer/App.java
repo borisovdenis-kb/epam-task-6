@@ -13,6 +13,11 @@ public class App {
         graph.addVertex("Python", "Kotlin");
 
         GraphSearch<String> graphSearch = new GraphSearch<>();
-        graphSearch.dfs(graph.getHead());
+        graphSearch.dfs(graph.getHead(), System.out::println);
+
+        graphSearch.clearVisited();
+        graphSearch.dfs(graph.getHead(), (v) -> v.setData("Python"));
+        graphSearch.clearVisited();
+        graphSearch.dfs(graph.getHead(), System.out::println);
     }
 }

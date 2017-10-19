@@ -4,6 +4,7 @@ import ru.intodayer.graph.Vertex;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.function.Consumer;
 
 
 public class GraphSearch<T> implements GraphAlgoInterface<T> {
@@ -13,19 +14,24 @@ public class GraphSearch<T> implements GraphAlgoInterface<T> {
         visited = new ArrayList<>();
     }
 
+    public void clearVisited() {
+        visited.clear();
+    }
+
     @Override
-    public void dfs(Vertex<T> vertex) {
+    public void dfs(Vertex<T> vertex, Consumer<Vertex<T>> function) {
+        function.accept(vertex);
         visited.add(vertex);
-        System.out.println(vertex);
         for (Vertex<T> v: vertex.getVertexes()) {
             if (!visited.contains(v)) {
-                dfs(v);
+                dfs(v, function);
             }
         }
     }
 
     @Override
     public Vertex<T> dfs(Vertex<T> vertex, T targetData) {
+        clearVisited();
         LinkedList<Vertex<T>> stack = new LinkedList<>();
         stack.add(vertex);
 
