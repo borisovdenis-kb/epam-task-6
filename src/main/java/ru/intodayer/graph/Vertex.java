@@ -57,7 +57,7 @@ public class Vertex <T> {
 
     @Override
     public String toString() {
-        String res = "(id:%s|[%s])";
+        String res = "(id:%s|%s)";
         return String.format(res, id, data);
     }
 }

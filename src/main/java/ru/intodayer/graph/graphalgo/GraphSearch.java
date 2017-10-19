@@ -31,7 +31,7 @@ public class GraphSearch<T> implements GraphAlgoInterface<T> {
 
     @Override
     public Vertex<T> dfs(Vertex<T> vertex, T targetData) {
-        clearVisited();
+        List<Vertex<T>> visited = new ArrayList<>();
         LinkedList<Vertex<T>> stack = new LinkedList<>();
         stack.add(vertex);
 
@@ -50,8 +50,42 @@ public class GraphSearch<T> implements GraphAlgoInterface<T> {
         return null;
     }
 
+    private void addAllToQueue(List<Vertex<T>> opened, LinkedList<Vertex<T>> queue, List<Vertex<T>> vertexes) {
+        for (Vertex<T> v: vertexes) {
+            if (!opened.contains(v)) {
+                queue.add(v);
+            }
+        }
+    }
+
     @Override
-    public void bfs(Vertex<T> vertex) {
-        //
+    public void bfs(Vertex<T> root, Consumer<Vertex<T>> function) {
+        List<Vertex<T>> opened = new ArrayList<>();
+        LinkedList<Vertex<T>> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (queue.size() != 0) {
+            Vertex<T> top = queue.removeFirst();
+            function.accept(top);
+            opened.add(top);
+            addAllToQueue(opened, queue, top.getVertexes());
+        }
+    }
+
+    @Override
+    public Vertex<T> bfs(Vertex<T> root, T targetData) {
+        List<Vertex<T>> opened = new ArrayList<>();
+        LinkedList<Vertex<T>> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (queue.size() != 0) {
+            Vertex<T> top = queue.removeFirst();
+            if (top.getData().equals(targetData)) {
+                return top;
+            }
+            opened.add(top);
+            addAllToQueue(opened, queue, top.getVertexes());
+        }
+        return null;
     }
 }
