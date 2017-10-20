@@ -1,15 +1,15 @@
 package ru.intodayer.graph;
 
-
 import ru.intodayer.graph.graphalgo.GraphSearch;
-import ru.intodayer.graph.vertex.Vertex;
+import ru.intodayer.graph.vertex.Branch;
+
 
 public class Graph<T> implements GraphInterface<T> {
     private int currentVertexId;
     private int size;
-    private Vertex<T> head;
+    private Branch<T> head;
 
-    public Vertex<T> getHead() {
+    public Branch<T> getHead() {
         return head;
     }
 
@@ -19,7 +19,7 @@ public class Graph<T> implements GraphInterface<T> {
 
     @Override
     public void addVertex(T data) {
-        Vertex<T> newHead = new Vertex<T>(data, getNewVertexId());
+        Branch<T> newHead = new Branch<T>(data, getNewVertexId());
         if (head == null) {
             head = newHead;
             return;
@@ -32,11 +32,11 @@ public class Graph<T> implements GraphInterface<T> {
     @Override
     public boolean addVertex(T data, T targetData) {
         GraphSearch<T> graphSearch = new GraphSearch<T>();
-        Vertex<T> target = graphSearch.dfs(getHead(), targetData);
+        Branch<T> target = graphSearch.dfs(getHead(), targetData);
         if (target == null) {
             return false;
         }
-        Vertex<T> newVertex = new Vertex<T>(data, getNewVertexId());
+        Branch<T> newVertex = new Branch<T>(data, getNewVertexId());
         target.addRelation(newVertex);
         newVertex.addRelation(target);
 

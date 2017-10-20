@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Vertex <T> {
+public class Branch<T> {
     private int id;
     private T data;
-    private List<Vertex<T>> vertexes;
+    private List<Branch<T>> vertexes;
 
-    public Vertex() {
+    public Branch() {
     }
 
-    public Vertex(T data, int vertexId) {
+    public Branch(T data, int vertexId) {
         this.id = vertexId;
         this.data = data;
         this.vertexes = new ArrayList<>();
@@ -30,11 +30,11 @@ public class Vertex <T> {
         this.data = data;
     }
 
-    public List<Vertex<T>> getVertexes() {
+    public List<Branch<T>> getVertexes() {
         return vertexes;
     }
 
-    public void addRelation(Vertex<T> vertex) {
+    public void addRelation(Branch<T> vertex) {
         if (!vertexes.contains(vertex)) {
             vertexes.add(vertex);
         }
@@ -45,7 +45,7 @@ public class Vertex <T> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Vertex<?> vertex = (Vertex<?>) o;
+        Branch<?> vertex = (Branch<?>) o;
 
         return id == vertex.id;
     }

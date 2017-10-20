@@ -1,6 +1,6 @@
 package ru.intodayer.graph.graphalgo;
 
-import ru.intodayer.graph.Vertex;
+import ru.intodayer.graph.vertex.Branch;
 import java.util.function.Consumer;
 
 
@@ -12,7 +12,7 @@ public interface GraphAlgoInterface<T> {
      * @param vertex - current vertex
      * @param function - some function that must be applied to each vertex.
      */
-    void dfs(Vertex<T> vertex, Consumer<Vertex<T>> function);
+    void dfs(Branch<T> vertex, Consumer<Branch<T>> function);
 
     /**
      * Algorithm - Depth First Search.
@@ -22,7 +22,7 @@ public interface GraphAlgoInterface<T> {
      * @param targetData - wanted vertex must contain targetData
      * @return
      */
-    Vertex<T> dfs(Vertex<T> vertex, T targetData);
+    Branch<T> dfs(Branch<T> vertex, T targetData);
 
     /**
      * Algorithm - breadth First Search.
@@ -30,7 +30,7 @@ public interface GraphAlgoInterface<T> {
      * @param root - start vertex
      * @param function - some function that must be applied to each vertex.
      */
-    void bfs(Vertex<T> root, Consumer<Vertex<T>> function);
+    void bfs(Branch<T> root, Consumer<Branch<T>> function);
 
     /**
      * Algorithm - breadth First Search.
@@ -40,5 +40,5 @@ public interface GraphAlgoInterface<T> {
      * @param targetData - wanted vertex must contain targetData
      * @return
      */
-    Vertex<T> bfs(Vertex<T> root, T targetData);
+    Branch<T> bfs(Branch<T> root, T targetData);
 }
