@@ -5,10 +5,12 @@ import java.util.List;
 
 
 public class Branch<T> extends Vertex<T> {
+    private Branch<T> parent;
     private List<Vertex<T>> vertexes;
 
-    public Branch(T data) {
+    public Branch(Branch<T> parent, T data) {
         super(data);
+        this.parent = parent;
         this.vertexes = new ArrayList<>();
     }
 
@@ -16,12 +18,12 @@ public class Branch<T> extends Vertex<T> {
         return vertexes;
     }
 
-    @Override
-    public void addRelation(Vertex<T> vertex) {
-        if (!vertexes.contains(vertex)) {
-            vertexes.add(vertex);
-        }
-    }
+//    @Override
+//    public void addRelation(Vertex<T> vertex) {
+//        if (!vertexes.contains(vertex)) {
+//            vertexes.add(vertex);
+//        }
+//    }
 
     @Override
     public String toString() {

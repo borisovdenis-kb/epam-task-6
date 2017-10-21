@@ -8,7 +8,7 @@ abstract public class Vertex<T> {
         this.data = data;
     }
 
-    public abstract void addRelation(Vertex<T> vertex);
+//    public abstract void addRelation(Vertex<T> vertex);
 
     public T getData() {
         return data;

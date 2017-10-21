@@ -1,6 +1,6 @@
 package ru.intodayer.graph.graphalgo;
 
-import ru.intodayer.graph.Vertex;
+import ru.intodayer.graph.vertex.Vertex;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
