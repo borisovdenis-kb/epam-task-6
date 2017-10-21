@@ -24,7 +24,7 @@ public interface GraphAlgoInterface<T> {
      * @param targetData - wanted vertex must contain targetData
      * @return
      */
-    Branch<T> dfs(Vertex<T> vertex, T targetData);
+    Vertex<T> dfs(Vertex<T> vertex, T targetData);
 
     /**
      * Algorithm - breadth First Search.
@@ -42,5 +42,5 @@ public interface GraphAlgoInterface<T> {
      * @param targetData - wanted vertex must contain targetData
      * @return
      */
-    Branch<T> bfs(Vertex<T> root, T targetData);
+    Vertex<T> bfs(Vertex<T> root, T targetData);
 }
