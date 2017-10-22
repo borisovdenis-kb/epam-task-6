@@ -6,7 +6,6 @@ import ru.intodayer.graph.vertex.Leaf;
 import ru.intodayer.graph.vertex.Vertex;
 import ru.intodayer.visitor.BFSIteratorVisitor;
 import ru.intodayer.visitor.DFSIteratorVisitor;
-import ru.intodayer.visitor.PrintingVisitor;
 import java.util.Arrays;
 
 
@@ -34,7 +33,7 @@ public class WorkDemonstration {
 
     private static <T> void printAllVertexes(Graph<T> graph) {
         for (Vertex<T> vertex: graph) {
-            vertex.accept(new PrintingVisitor<>());
+            vertex.print();
         }
     }
 
