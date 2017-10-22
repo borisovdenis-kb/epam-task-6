@@ -7,11 +7,11 @@ import java.util.HashSet;
 import java.util.Iterator;
 
 
-public class IterateVisitor<T> implements VertexVisitor<T>, Iterator<Vertex<T>> {
+public class DFSIteratorVisitor<T> implements VertexVisitor<T>, Iterator<Vertex<T>> {
     private HashSet<Vertex<T>> visited = new HashSet<>();
     private Vertex<T> currentElement;
 
-    public IterateVisitor(Vertex<T> head) {
+    public DFSIteratorVisitor(Vertex<T> head) {
         this.currentElement = head;
     }
 
@@ -55,8 +55,8 @@ public class IterateVisitor<T> implements VertexVisitor<T>, Iterator<Vertex<T>> 
 
     @Override
     public Vertex<T> next() {
-        Vertex<T> tmp = this.currentElement;
-        this.currentElement.accept(this);
+        Vertex<T> tmp = currentElement;
+        currentElement.accept(this);
         return tmp;
     }
 }
