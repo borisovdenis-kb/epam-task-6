@@ -3,6 +3,7 @@ package ru.intodayer;
 import ru.intodayer.graph.Graph;
 import ru.intodayer.graph.vertex.Branch;
 import ru.intodayer.graph.vertex.Leaf;
+import ru.intodayer.graph.vertex.Printable;
 import ru.intodayer.graph.vertex.Vertex;
 import ru.intodayer.visitor.BFSIteratorVisitor;
 import ru.intodayer.visitor.DFSIteratorVisitor;
@@ -32,7 +33,7 @@ public class WorkDemonstration {
     }
 
     private static <T> void printAllVertexes(Graph<T> graph) {
-        for (Vertex<T> vertex: graph) {
+        for (Printable vertex: graph) {
             vertex.print();
         }
     }
