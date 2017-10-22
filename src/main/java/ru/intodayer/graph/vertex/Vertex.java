@@ -1,14 +1,15 @@
 package ru.intodayer.graph.vertex;
 
+import ru.intodayer.visitor.VertexVisitor;
+
 
 abstract public class Vertex<T> {
     protected T data;
+    protected Branch<T> parent;
 
     public Vertex(T data) {
         this.data = data;
     }
-
-//    public abstract void addRelation(Vertex<T> vertex);
 
     public T getData() {
         return data;
@@ -17,6 +18,16 @@ abstract public class Vertex<T> {
     public void setData(T data) {
         this.data = data;
     }
+
+    public Branch<T> getParent() {
+        return parent;
+    }
+
+    public void setParent(Branch<T> parent) {
+        this.parent = parent;
+    }
+
+    public abstract void accept(VertexVisitor<T> visitor);
 
     @Override
     public boolean equals(Object o) {

@@ -1,32 +1,23 @@
 package ru.intodayer.graph.vertex;
 
-import java.util.ArrayList;
+import ru.intodayer.visitor.VertexVisitor;
 import java.util.List;
 
 
-public class Branch<T> extends Vertex<T> {
-    private Branch<T> parent;
-    private List<Vertex<T>> vertexes;
+public class Branch<T> extends Vertex<T> implements GraphNode<T> {
+    private List<Vertex<T>> children;
 
-    public Branch(Branch<T> parent, T data) {
+    public Branch(T data, List<Vertex<T>> children) {
         super(data);
-        this.parent = parent;
-        this.vertexes = new ArrayList<>();
+        this.children = children;
     }
-
-    public List<Vertex<T>> getVertexes() {
-        return vertexes;
-    }
-
-//    @Override
-//    public void addRelation(Vertex<T> vertex) {
-//        if (!vertexes.contains(vertex)) {
-//            vertexes.add(vertex);
-//        }
-//    }
 
     @Override
-    public String toString() {
-        return String.format("(branch|%s)", data);
+    public List<Vertex<T>> getChildren() {
+        return children;
+    }
+
+    public void accept(VertexVisitor<T> visitor) {
+        visitor.VisitVertex(this);
     }
 }

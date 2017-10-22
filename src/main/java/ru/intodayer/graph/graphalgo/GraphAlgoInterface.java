@@ -1,8 +1,6 @@
 package ru.intodayer.graph.graphalgo;
 
-import ru.intodayer.graph.vertex.Branch;
 import ru.intodayer.graph.vertex.Vertex;
-
 import java.util.function.Consumer;
 
 

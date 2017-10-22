@@ -1,55 +1,25 @@
 package ru.intodayer.graph;
 
-import ru.intodayer.graph.graphalgo.GraphSearch;
 import ru.intodayer.graph.vertex.Branch;
+import ru.intodayer.graph.vertex.Vertex;
+import ru.intodayer.visitor.IterateVisitor;
+
+import java.util.Iterator;
 
 
-public class Graph<T> implements GraphInterface<T> {
-    private int currentVertexId;
-    private int size;
-    private Branch<T> head;
+public class Graph<T> implements Iterable<Vertex<T>> {
+    private Vertex<T> head;
 
-    public Branch<T> getHead() {
+    public Graph(Branch<T> head) {
+        this.head = head;
+    }
+
+    public Vertex<T> getHead() {
         return head;
     }
 
-    private int getNewVertexId() {
-        return currentVertexId++;
-    }
-
     @Override
-    public void addVertex(T data) {
-        Branch<T> newHead = new Branch<T>(data, getNewVertexId());
-        if (head == null) {
-            head = newHead;
-            return;
-        }
-        newHead.addRelation(head);
-        head.addRelation(newHead);
-        head = newHead;
+    public Iterator<Vertex<T>> iterator() {
+        return new IterateVisitor<T>(getHead());
     }
-
-    @Override
-    public boolean addVertex(T data, T targetData) {
-        GraphSearch<T> graphSearch = new GraphSearch<T>();
-        Branch<T> target = graphSearch.dfs(getHead(), targetData);
-        if (target == null) {
-            return false;
-        }
-        Branch<T> newVertex = new Branch<T>(data, getNewVertexId());
-        target.addRelation(newVertex);
-        newVertex.addRelation(target);
-
-        return true;
-    }
-
-    @Override
-    public int size() {
-        return size;
-    }
-
-//    @Override
-//    public String toString() {
-//
-//    }
 }

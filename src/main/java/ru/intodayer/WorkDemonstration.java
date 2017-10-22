@@ -1,54 +1,34 @@
 package ru.intodayer;
 
 import ru.intodayer.graph.Graph;
-import ru.intodayer.graph.graphalgo.GraphSearch;
+import ru.intodayer.graph.vertex.Branch;
+import ru.intodayer.graph.vertex.Leaf;
+import ru.intodayer.graph.vertex.Vertex;
+import ru.intodayer.visitor.PrintingVisitor;
+import java.util.Arrays;
 
 
 public class WorkDemonstration {
     public static void demonstrate() {
         testGraphDFS();
-        testGraphBFS();
     }
 
     private static void testGraphDFS() {
-        Graph<String> graph = new Graph<>();
-        graph.addVertex("Java");
-        graph.addVertex("C++", "Java");
-        graph.addVertex("Kotlin", "Java");
-        graph.addVertex("Python", "Kotlin");
+        Leaf<String> leafKotlin = new Leaf<>("Kotlin");
+        Branch<String> branchJava = new Branch<>("Java", Arrays.asList(leafKotlin));
 
-        System.out.println("Test DFS:");
+        Leaf<String> leafPython = new Leaf<>("Python");
+        Branch<String> branchCpp = new Branch<>("C++", Arrays.asList(leafPython, branchJava));
 
-        System.out.println("Test: print all vertexes");
-        GraphSearch<String> graphSearch = new GraphSearch<>();
-        graphSearch.dfs(graph.getHead(), System.out::println);
+        leafKotlin.setParent(branchJava);
+        leafPython.setParent(branchCpp);
+        branchJava.setParent(branchCpp);
 
-        System.out.println("Test: change data of all vertexes to BASIC");
-        graphSearch.clearVisited();
-        graphSearch.dfs(graph.getHead(), (v) -> v.setData("BASIC"));
-        graphSearch.clearVisited();
-        graphSearch.dfs(graph.getHead(), System.out::println);
+        Graph<String> graph = new Graph<>(branchCpp);
 
-        System.out.println();
-    }
+        for (Vertex<String> vertex: graph) {
+            vertex.accept(new PrintingVisitor<>());
+        }
 
-    private static void testGraphBFS() {
-        Graph<String> graph = new Graph<>();
-        graph.addVertex("1");
-        graph.addVertex("2", "1");
-        graph.addVertex("3", "1");
-        graph.addVertex("4", "3");
-
-        System.out.println("Test BFS:");
-
-        System.out.println("Test: print all vertexes");
-        GraphSearch<String> graphSearch = new GraphSearch<>();
-        graphSearch.bfs(graph.getHead(), System.out::println);
-
-        System.out.println("Test: change data of all vertexes to 777");
-        graphSearch.bfs(graph.getHead(), (v) -> v.setData("777"));
-        graphSearch.bfs(graph.getHead(), System.out::println);
-
-        System.out.println();
     }
 }
