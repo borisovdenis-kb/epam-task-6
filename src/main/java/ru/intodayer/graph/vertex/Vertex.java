@@ -43,4 +43,10 @@ abstract public class Vertex<T> {
     public int hashCode() {
         return data.hashCode();
     }
+
+    // TODO: For debugging. Don`t forget do remove this.
+    @Override
+    public String toString() {
+        return data.toString();
+    }
 }
