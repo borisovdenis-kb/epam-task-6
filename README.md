@@ -1,1 +1,2 @@
-# epam-task-6
+# Graph and Visitor pattern task
+#### Author: Borisov Denis
