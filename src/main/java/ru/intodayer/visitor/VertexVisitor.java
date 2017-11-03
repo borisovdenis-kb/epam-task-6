@@ -5,6 +5,6 @@ import ru.intodayer.graph.vertex.Leaf;
 
 
 public interface VertexVisitor<T> {
-    void VisitVertex(Leaf<T> leaf);
-    void VisitVertex(Branch<T> branch);
+    void visitVertex(Leaf<T> leaf);
+    void visitVertex(Branch<T> branch);
 }

@@ -3,14 +3,11 @@ package ru.intodayer.visitor;
 import ru.intodayer.graph.vertex.Branch;
 import ru.intodayer.graph.vertex.Leaf;
 import ru.intodayer.graph.vertex.Vertex;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 
 public class BFSIteratorVisitor<T> implements VertexVisitor<T>, Iterator<Vertex<T>> {
-    private HashSet<Vertex<T>> opened = new HashSet<>();
+    private Set<Vertex<T>> opened = new HashSet<>();
     private LinkedList<Vertex<T>> queue = new LinkedList<>();
     private Vertex<T> currentElement;
 
@@ -28,12 +25,12 @@ public class BFSIteratorVisitor<T> implements VertexVisitor<T>, Iterator<Vertex<
     }
 
     @Override
-    public void VisitVertex(Leaf<T> leaf) {
+    public void visitVertex(Leaf<T> leaf) {
         opened.add(leaf);
     }
 
     @Override
-    public void VisitVertex(Branch<T> branch) {
+    public void visitVertex(Branch<T> branch) {
         opened.add(branch);
         addAllToQueue(branch.getChildren());
     }

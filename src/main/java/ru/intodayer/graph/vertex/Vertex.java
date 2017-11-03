@@ -1,13 +1,11 @@
 package ru.intodayer.graph.vertex;
 
-import ru.intodayer.visitor.PrintingVisitor;
 import ru.intodayer.visitor.VertexVisitor;
 
 
 abstract public class Vertex<T> implements Printable {
     protected T data;
     protected Branch<T> parent;
-    protected PrintingVisitor<T> printingVisitor;
 
     public Vertex(T data) {
         this.data = data;
@@ -29,15 +27,11 @@ abstract public class Vertex<T> implements Printable {
         this.parent = parent;
     }
 
-    public void setPrintingVisitor(PrintingVisitor<T> pv) {
-        this.printingVisitor = pv;
-    }
-
     public abstract void accept(VertexVisitor<T> visitor);
 
     @Override
     public void print() {
-        this.accept(printingVisitor);
+        System.out.printf(this.toString() + "\n");
     }
 
     @Override
@@ -53,5 +47,10 @@ abstract public class Vertex<T> implements Printable {
     @Override
     public int hashCode() {
         return data.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return String.format("(vertex:%s)", this.getData());
     }
 }

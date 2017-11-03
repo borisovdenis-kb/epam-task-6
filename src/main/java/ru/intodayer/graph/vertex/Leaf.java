@@ -18,6 +18,11 @@ public class Leaf<T> extends Vertex<T> implements GraphNode<T> {
 
     @Override
     public void accept(VertexVisitor<T> visitor) {
-        visitor.VisitVertex(this);
+        visitor.visitVertex(this);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("(leaf:%s)", this.getData());
     }
 }

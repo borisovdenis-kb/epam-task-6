@@ -5,10 +5,11 @@ import ru.intodayer.graph.vertex.Leaf;
 import ru.intodayer.graph.vertex.Vertex;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 
 public class DFSIteratorVisitor<T> implements VertexVisitor<T>, Iterator<Vertex<T>> {
-    private HashSet<Vertex<T>> visited = new HashSet<>();
+    private Set<Vertex<T>> visited = new HashSet<>();
     private Vertex<T> currentElement;
 
     public DFSIteratorVisitor(Vertex<T> head) {
@@ -16,7 +17,7 @@ public class DFSIteratorVisitor<T> implements VertexVisitor<T>, Iterator<Vertex<
     }
 
     @Override
-    public void VisitVertex(Leaf<T> leaf) {
+    public void visitVertex(Leaf<T> leaf) {
         if (!visited.contains(leaf)) {
             currentElement = leaf;
             visited.add(leaf);
@@ -30,7 +31,7 @@ public class DFSIteratorVisitor<T> implements VertexVisitor<T>, Iterator<Vertex<
     }
 
     @Override
-    public void VisitVertex(Branch<T> branch) {
+    public void visitVertex(Branch<T> branch) {
         for (Vertex<T> tVertex : branch.getChildren()) {
             if (!visited.contains(tVertex)) {
                 tVertex.accept(this);

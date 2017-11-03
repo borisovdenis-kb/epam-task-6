@@ -17,7 +17,13 @@ public class Branch<T> extends Vertex<T> implements GraphNode<T> {
         return children;
     }
 
+    @Override
     public void accept(VertexVisitor<T> visitor) {
-        visitor.VisitVertex(this);
+        visitor.visitVertex(this);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("(branch:%s)", this.getData());
     }
 }

@@ -5,8 +5,11 @@ import ru.intodayer.graph.vertex.Branch;
 import ru.intodayer.graph.vertex.Leaf;
 import ru.intodayer.graph.vertex.Printable;
 import ru.intodayer.graph.vertex.Vertex;
+import ru.intodayer.strategy.BFSStrategy;
+import ru.intodayer.strategy.DFSStrategy;
 import ru.intodayer.visitor.BFSIteratorVisitor;
 import ru.intodayer.visitor.DFSIteratorVisitor;
+import ru.intodayer.visitor.PrintingVisitor;
 import java.util.Arrays;
 
 
@@ -33,20 +36,26 @@ public class WorkDemonstration {
     }
 
     private static <T> void printAllVertexes(Graph<T> graph) {
+        System.out.println("Printing using method print().");
         for (Printable vertex: graph) {
             vertex.print();
+        }
+        System.out.println("\nPrinting using PrintingVisitor.");
+        PrintingVisitor<T> pv = new PrintingVisitor<>();
+        for (Vertex vertex: graph) {
+            vertex.accept(pv);
         }
     }
 
     private static void testGraphDFS() {
         Graph<String> graph = createGraph();
-        graph.setIterator(new DFSIteratorVisitor<>(graph.getHead()));
+        graph.setStrategy(new DFSStrategy<>());
         printAllVertexes(graph);
     }
 
     private static void testGraphBFS() {
         Graph<String> graph = createGraph();
-        graph.setIterator(new BFSIteratorVisitor<>(graph.getHead()));
+        graph.setStrategy(new BFSStrategy<>());
         printAllVertexes(graph);
     }
 }
